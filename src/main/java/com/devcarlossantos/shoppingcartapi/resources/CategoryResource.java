@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.awt.*;
 import java.util.List;
 
 @RestController
@@ -21,11 +20,12 @@ public class CategoryResource {
     }
     @GetMapping
     public ResponseEntity<List<Category>> findAll(){
-        return ResponseEntity.ok(categoryService.findAll());
+        return ResponseEntity.ok().body(categoryService.findAll());
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Category> findById(@PathVariable Long id){
-        return ResponseEntity.ok(categoryService.findById(id));
+        Category category = categoryService.findById(id);
+        return ResponseEntity.ok().body(category);
     }
 }
